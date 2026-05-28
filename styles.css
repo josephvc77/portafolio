@@ -1628,7 +1628,7 @@ a.contact-item:hover {
         display: none !important;
     }
     
-    .nav-links, .nav-actions {
+    .nav-links, .btn-nav-cta {
         display: none;
     }
     

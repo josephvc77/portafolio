@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 12. Alternancia de Modo Claro/Oscuro (Theme Toggle)
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    const currentTheme = localStorage.getItem('theme') || 'light';
 
     // Aplicar el tema guardado al iniciar
     document.documentElement.setAttribute('data-theme', currentTheme);
