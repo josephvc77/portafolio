@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0072ff" />
+      <stop offset="100%" stop-color="#00f2fe" />
+    </linearGradient>
+  </defs>
+  <!-- Main capsule/rounded rect background -->
+  <rect width="32" height="32" rx="8" fill="#0a0c10" />
+  <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="url(#bg-gradient)" stroke-width="1.5" />
+  
+  <!-- Stylized J with a dot -->
+  <path d="M12 10h6v8a4 4 0 0 1-4 4h-1a1 1 0 0 1 0-2h1a2 2 0 0 0 2-2v-6h-4a1 1 0 0 1 0-2z" fill="url(#bg-gradient)" />
+  
+  <!-- Glowing accent logo dot -->
+  <circle cx="21" cy="10" r="2.5" fill="#39ff14" />
+</svg>
