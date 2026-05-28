@@ -1466,9 +1466,11 @@ a.contact-item:hover {
 }
 
 .social-link i,
-.social-link svg {
+.social-link svg,
+.social-icon-svg {
     width: 20px;
     height: 20px;
+    display: block;
 }
 
 /* Formulario Stripe-Style */
