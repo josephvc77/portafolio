@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Valencia Cisneros | Senior Frontend Engineer & Tech Lead</title>
+    <meta name="description"
+        content="Portafolio profesional de Joseph Valencia Cisneros, Frontend Senior Engineer y Tech Lead. Especializado en Angular, React, Python, Django y arquitectura frontend a gran escala.">
+    <!-- Google Fonts: Outfit (Display) & Inter (Text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Instant Theme Detection to avoid FOUC -->
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+
+<body>
+
+    <!-- Cursor inteligente personalizado -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-glow" id="cursor-glow"></div>
+
+    <!-- Fondo de Grid Tecnológico Interactiva -->
+    <div class="grid-background">
+        <div class="grid-radial-glow" id="grid-glow"></div>
+        <div class="grid-pattern"></div>
+    </div>
+
+    <!-- Loader Inicial Moderno -->
+    <div class="page-loader" id="loader">
+        <div class="loader-content">
+            <span class="loader-name">JOSEPH VALENCIA</span>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <span class="loader-subtitle">FRONTEND TECH LEAD</span>
+        </div>
+    </div>
+
+    <!-- Barra de Navegación Flotante -->
+    <header class="navbar-wrapper">
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="scroll-progress"></div>
+        </div>
+        <nav class="navbar">
+            <a href="#" class="nav-logo">
+                <span class="logo-dot"></span>JVC
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link active">Sobre mí</a></li>
+                <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                <li><a href="#leadership" class="nav-link">Liderazgo</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+                    <i data-lucide="sun" class="icon-sun"></i>
+                    <i data-lucide="moon" class="icon-moon"></i>
+                </button>
+                <a href="#contact" class="btn-nav-cta">Contratar <i class="lucide-arrow-up-right"></i></a>
+            </div>
+            <button class="mobile-toggle" aria-label="Abrir menú">
+                <i data-lucide="menu"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menú Móvil Expandido -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-close" aria-label="Cerrar menú">
+            <i data-lucide="x"></i>
+        </button>
+        <ul class="mobile-links">
+            <li><a href="#about" class="mobile-link">Sobre mí</a></li>
+            <li><a href="#experience" class="mobile-link">Experiencia</a></li>
+            <li><a href="#skills" class="mobile-link">Skills</a></li>
+            <li><a href="#projects" class="mobile-link">Proyectos</a></li>
+            <li><a href="#leadership" class="mobile-link">Liderazgo</a></li>
+            <li><a href="#contact" class="mobile-link">Contacto</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="content-container">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-glow-1"></div>
+            <div class="hero-glow-2"></div>
+            <div class="hero-content">
+                <div class="badge-container animate-fade-up">
+                    <span class="senior-badge">
+                        <i data-lucide="shield-check" class="badge-icon"></i>
+                        Frontend Senior / Líder Técnico Frontend
+                    </span>
+                </div>
+
+                <h1 class="hero-title animate-fade-up delay-1">
+                    Joseph Valencia Cisneros
+                </h1>
+
+                <h2 class="hero-subtitle animate-fade-up delay-2">
+                    Arquitecturas Frontend <span class="gradient-text">Robustas, Escalables y de Alta Criticidad</span>
+                </h2>
+
+                <p class="hero-description animate-fade-up delay-3">
+                    Especialista en el diseño, desarrollo y liderazgo de aplicaciones web empresariales y
+                    gubernamentales. Con un enfoque riguroso en performance, escalabilidad, Clean Code y experiencia de
+                    usuario (UX/UI).
+                </p>
+
+                <div class="hero-ctas animate-fade-up delay-4">
+                    <a href="#projects" class="btn btn-primary">
+                        <span class="btn-text">Ver Proyectos</span>
+                        <i data-lucide="layout-grid" class="btn-icon"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="btn-text">Contactarme</span>
+                        <i data-lucide="message-square" class="btn-icon"></i>
+                    </a>
+                    <a href="#" class="btn btn-tertiary" id="download-cv">
+                        <span class="btn-text">Descargar CV</span>
+                        <i data-lucide="download" class="btn-icon"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dashboard Mockup Hero -->
+            <div class="hero-mockup-wrapper animate-fade-up delay-5">
+                <div class="mockup-frame">
+                    <div class="mockup-header">
+                        <div class="mockup-dots">
+                            <span class="mockup-dot red"></span>
+                            <span class="mockup-dot yellow"></span>
+                            <span class="mockup-dot green"></span>
+                        </div>
+                        <div class="mockup-tab"><i data-lucide="cpu" class="tab-icon"></i>
+                            valencia-architecture.config.ts</div>
+                    </div>
+                    <div class="mockup-body">
+                        <pre><code><span class="token keyword">import</span> { <span class="token definition">FrontendArchitecture</span> } <span class="token keyword">from</span> <span class="token string">'@joseph-valencia/core'</span>;
+
+<span class="token keyword">export const</span> <span class="token variable">techLeadConfig</span> = <span class="token keyword">new</span> <span class="token class">FrontendArchitecture</span>({
+  experience: <span class="token string">'+3 Years'</span>,
+  coreFrameworks: [<span class="token string">'Angular'</span>, <span class="token string">'React'</span>],
+  backendStack: [<span class="token string">'Python'</span>, <span class="token string">'Django'</span>],
+  paradigm: <span class="token string">'Component Driven Architecture'</span>,
+  standards: {
+    cleanCode: <span class="token boolean">true</span>,
+    codeReview: <span class="token boolean">true</span>,
+    dockerizedDeploy: <span class="token boolean">true</span>
+  }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE MÍ (ABOUT) SECTION -->
+        <section class="about-section scroll-reveal" id="about">
+            <div class="section-header">
+                <span class="section-tagline">PERFIL PROFESIONAL</span>
+                <h3 class="section-title">Sobre Mí &amp; Enfoque</h3>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-story">
+                    <p class="about-paragraph highlight">
+                        Lidero el desarrollo frontend end-to-end, definiendo estándares de arquitectura, mejores
+                        prácticas de programación, revisión de código (code reviews) y una estrecha coordinación técnica
+                        con equipos backend, QA y stakeholders.
+                    </p>
+                    <p class="about-paragraph">
+                        Cuento con amplia experiencia trabajando bajo presión, asumiendo proyectos gubernamentales y
+                        empresariales con fechas de entrega sumamente estrictas y de alto impacto operativo nacional.
+                    </p>
+                    <p class="about-paragraph">
+                        Mi filosofía se centra en la fusión impecable de una excelente comunicación funcional,
+                        pensamiento analítico preciso para resolver problemas complejos y un enfoque rotundo en la
+                        optimización del rendimiento (performance) y la accesibilidad web (WCAG).
+                    </p>
+
+                    <!-- EDUCACIÓN -->
+                    <div class="education-block">
+                        <h4 class="edu-title"><i data-lucide="graduation-cap" class="edu-icon"></i> Educación Académica
+                        </h4>
+                        <div class="edu-item">
+                            <span class="edu-period">2021 – 2023</span>
+                            <p class="edu-degree">Licenciatura en Ingeniería en Desarrollo y Gestión de Software</p>
+                            <p class="edu-school">Universidad Tecnológica de Morelia</p>
+                        </div>
+                        <div class="edu-item">
+                            <span class="edu-period">2019 – 2021</span>
+                            <p class="edu-degree">Técnico Superior Universitario en Tecnologías de la Información</p>
+                            <p class="edu-school">Área: Desarrollo de Software Multiplataforma | Universidad Tecnológica
+                                de Morelia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-stats-grid">
+                    <div class="stat-card glass-card">
+                        <div class="stat-glow"></div>
+                        <span class="stat-number">+3</span>
+                        <span class="stat-label">Años de Liderazgo Frontend</span>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-glow"></div>
+                        <span class="stat-number">RNP</span>
+                        <span class="stat-label">Líder Técnico de Plataforma Nacional</span>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-glow"></div>
+                        <span class="stat-number">B2</span>
+                        <span class="stat-label">Inglés Técnico &amp; Colaboración</span>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-glow"></div>
+                        <span class="stat-number">Full</span>
+                        <span class="stat-label">Stack Capabilities (Python/Django)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCIA PROFESIONAL (TIMELINE) SECTION -->
+        <section class="experience-section scroll-reveal" id="experience">
+            <div class="section-header center">
+                <span class="section-tagline">TRAYECTORIA DE ALTO IMPACTO</span>
+                <h3 class="section-title">Experiencia Profesional</h3>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-line"></div>
+
+                <!-- Exp 1: SEP Nayarit -->
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-period">2024 - 2026</span>
+                            <h4 class="timeline-role">Frontend Senior / Líder Frontend</h4>
+                            <span class="timeline-company">Secretaría de Educación Pública (SEP) — Nayarit</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Responsable técnico del Frontend del Registro Nacional de Profesionistas (RNP), liderando
+                            decisiones críticas de arquitectura, estructura de componentes reutilizables y estándares
+                            estrictos de desarrollo.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Desarrollo de interfaces
+                                altamente escalables, responsivas y accesibles bajo lineamientos de primer nivel
+                                utilizadas nacionalmente.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Implementación de validaciones
+                                complejas y flujos críticos de datos, garantizando integridad de la información y óptima
+                                experiencia de usuario.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Resolución de incidencias
+                                críticas en Frontend y colaboración directa y fluida con equipos Back-End (Java) para
+                                reducir riesgos operativos.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Coordinación técnica con
+                                desarrolladores, QA y áreas funcionales para cumplir con entregas en cronogramas
+                                estrictos.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Gestión de despliegues y pruebas
+                                en contenedores Docker para validar la estabilidad en entornos de pre-producción.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Java Integration</span>
+                            <span class="tech-tag">Git &amp; GitFlow</span>
+                            <span class="tech-tag">Component Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exp 2: SEP CDMX -->
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-period">2023 - 2026</span>
+                            <h4 class="timeline-role">Desarrollador Full Stack</h4>
+                            <span class="timeline-company">Secretaría de Educación Pública (SEP) — CDMX</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Lideré el diseño y desarrollo integral de una plataforma web gubernamental para la gestión
+                            centralizada de inmuebles arrendados.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Definición de una arquitectura
+                                modular basada en micro-sitios, garantizando escalabilidad del sistema, mantenibilidad
+                                limpia y crecimiento ordenado.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Desarrollo robusto del Back-End
+                                con Python y Django, y maquetación ágil del Front-End utilizando HTML, CSS y Bootstrap.
+                            </li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Implementación de módulos
+                                críticos: esquemas de autenticación y control de accesos basados en roles (RBAC), CRUDs
+                                administrativos avanzados e interfaces especializadas.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Digitalización y automatización
+                                de procesos institucionales manuales, incrementando drásticamente la eficiencia
+                                operativa interna.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">HTML5 &amp; CSS3</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">Micro-sitios Architecture</span>
+                            <span class="tech-tag">RBAC Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exp 3: IA Interactive -->
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-period">2022 - 2023</span>
+                            <h4 class="timeline-role">Desarrollador Frontend</h4>
+                            <span class="timeline-company">IA Interactive C — Morelia, Michoacán</span>
+                        </div>
+                        <p class="timeline-desc">
+                            Desarrollo enfocado en componentes interactivos reutilizables y SEO técnico para landing
+                            pages promocionales de lanzamientos cinematográficos globales.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Creación de componentes
+                                modulares y altamente adaptables utilizando React JS bajo estrictas guías de diseño
+                                pixel-perfect.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Implementación de SCSS dinámico
+                                para una tematización escalable y adaptativa por proyecto cinematográfico.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Aplicación rigurosa de SEO
+                                técnico mediante HTML semántico, estructuración de meta tags y optimización fina de
+                                tiempos de carga iniciales.</li>
+                            <li><i data-lucide="check-circle2" class="bullet-icon"></i> Coordinación directa en entornos
+                                de trabajo con equipos internacionales de diseño y marketing en México, España, Honduras
+                                y Venezuela.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tech-tag">React JS</span>
+                            <span class="tech-tag">SCSS / SASS</span>
+                            <span class="tech-tag">SEO Técnico</span>
+                            <span class="tech-tag">International Teams</span>
+                            <span class="tech-tag">Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS / TECH STACK SECTION -->
+        <section class="skills-section scroll-reveal" id="skills">
+            <div class="section-header">
+                <span class="section-tagline">COMPETENCIAS TÉCNICAS</span>
+                <h3 class="section-title">Stack Tecnológico &amp; Core Skills</h3>
+            </div>
+
+            <div class="skills-grid">
+
+                <!-- Frontend Core -->
+                <div class="skill-category-card glass-card">
+                    <div class="skill-card-glow blue"></div>
+                    <div class="skill-card-header">
+                        <i data-lucide="layout" class="skill-icon blue"></i>
+                        <h4>Frontend Core</h4>
+                    </div>
+                    <div class="skills-badges-wrapper">
+                        <span class="skill-badge blue">Angular</span>
+                        <span class="skill-badge blue">React JS</span>
+                        <span class="skill-badge blue">JavaScript (ES6+)</span>
+                        <span class="skill-badge blue">TypeScript</span>
+                        <span class="skill-badge blue">HTML5 &amp; CSS3</span>
+                        <span class="skill-badge blue">SASS / LESS</span>
+                        <span class="skill-badge blue">Responsive Design</span>
+                        <span class="skill-badge blue">Accesibilidad (WCAG)</span>
+                        <span class="skill-badge blue">SEO Técnico</span>
+                        <span class="skill-badge blue">Performance Tuning</span>
+                    </div>
+                </div>
+
+                <!-- Backend & Integración -->
+                <div class="skill-category-card glass-card">
+                    <div class="skill-card-glow green"></div>
+                    <div class="skill-card-header">
+                        <i data-lucide="server" class="skill-icon green"></i>
+                        <h4>Backend &amp; Integración</h4>
+                    </div>
+                    <div class="skills-badges-wrapper">
+                        <span class="skill-badge green">Python</span>
+                        <span class="skill-badge green">Django</span>
+                        <span class="skill-badge green">Java</span>
+                        <span class="skill-badge green">APIs REST</span>
+                        <span class="skill-badge green">Web Services</span>
+                        <span class="skill-badge green">Integración FE-BE</span>
+                    </div>
+                </div>
+
+                <!-- DevOps & Herramientas -->
+                <div class="skill-category-card glass-card">
+                    <div class="skill-card-glow purple"></div>
+                    <div class="skill-card-header">
+                        <i data-lucide="cloud" class="skill-icon purple"></i>
+                        <h4>DevOps &amp; Tools</h4>
+                    </div>
+                    <div class="skills-badges-wrapper">
+                        <span class="skill-badge purple">Docker</span>
+                        <span class="skill-badge purple">Git / GitFlow</span>
+                        <span class="skill-badge purple">Visual Studio Code</span>
+                        <span class="skill-badge purple">IntelliJ IDEA</span>
+                        <span class="skill-badge purple">Jira</span>
+                        <span class="skill-badge purple">Figma</span>
+                        <span class="skill-badge purple">AWS (S3, EC2, RDS)</span>
+                        <span class="skill-badge purple">Azure</span>
+                    </div>
+                </div>
+
+                <!-- Bases de Datos & Sistemas -->
+                <div class="skill-category-card glass-card">
+                    <div class="skill-card-glow cyan"></div>
+                    <div class="skill-card-header">
+                        <i data-lucide="database" class="skill-icon cyan"></i>
+                        <h4>Bases de Datos &amp; SO</h4>
+                    </div>
+                    <div class="skills-badges-wrapper">
+                        <span class="skill-badge cyan">PostgreSQL</span>
+                        <span class="skill-badge cyan">MySQL</span>
+                        <span class="skill-badge cyan">MongoDB</span>
+                        <span class="skill-badge cyan">Linux</span>
+                        <span class="skill-badge cyan">macOS</span>
+                        <span class="skill-badge cyan">Windows</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROYECTOS DESTACADOS SECTION -->
+        <section class="projects-section scroll-reveal" id="projects">
+            <div class="section-header center">
+                <span class="section-tagline">INGENIERÍA REALIZADA</span>
+                <h3 class="section-title">Proyectos Destacados</h3>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- Project 1: Ikigai App (Ecosistema Móvil IA Salud) -->
+                <div class="project-card glass-card scroll-reveal">
+                    <div class="project-image-simulated">
+                        <div class="project-glow bg-purple"></div>
+                        <div class="mock-browser-ui">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            <div class="mock-url">ikigaiapp.health.mobile</div>
+                        </div>
+                        <div class="project-preview-content">
+                            <div class="gov-shield-icon"><i data-lucide="smartphone"></i></div>
+                            <div class="gov-text">IKIGAI IA</div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h4 class="project-name">Ikigai App - Ecosistema de Salud Integral</h4>
+                        <p class="project-desc">
+                            Ecosistema de salud holístico (salud mental, nutrición y deporte) potenciado por asistentes de IA multimodales (Gemini API) y control de voz interactivo en tiempo real (STT).
+                        </p>
+                        <div class="project-problem-impact">
+                            <p><strong>Desafío de IA:</strong> Interacción fluida por voz asíncrona de baja latencia con procesamiento en DRF y optimización del procesamiento de lenguaje natural en tiempo real.</p>
+                            <p><strong>Impacto:</strong> Arquitectura móvil desconectada (offline-first) altamente segura, sanitización estricta de entradas y testing de integración continuo.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span class="tag">React Native</span>
+                                <span class="tag">Django</span>
+                                <span class="tag">Gemini API</span>
+                                <span class="tag">AssemblyAI</span>
+                            </div>
+                            <a href="Ikigai_App.apk" download class="project-link">
+                                Descargar APK <i data-lucide="download" class="link-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Registro Nacional de Profesionistas (RNP) -->
+                <div class="project-card glass-card scroll-reveal">
+                    <div class="project-image-simulated">
+                        <div class="project-glow bg-blue"></div>
+                        <div class="mock-browser-ui">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            <div class="mock-url">sep.gob.mx/registro-profesionistas</div>
+                        </div>
+                        <div class="project-preview-content">
+                            <div class="gov-shield-icon"><i data-lucide="milestone"></i></div>
+                            <div class="gov-text">RNP NACIONAL</div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h4 class="project-name">Registro Nacional de Profesionistas (RNP)</h4>
+                        <p class="project-desc">
+                            Arquitectura y desarrollo frontend de la plataforma crítica a nivel nacional para la validación y gestión de registros profesionales y cédulas.
+                        </p>
+                        <div class="project-problem-impact">
+                            <p><strong>Problema resuelto:</strong> Integridad en flujos transaccionales y validaciones asíncronas complejas, optimizando el rendimiento para millones de usuarios institucionales.</p>
+                            <p><strong>Impacto:</strong> Interfaces accesibles responsivas y reducción drástica en tiempos de fricción operativa en el portal nacional.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span class="tag">Angular</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">Docker</span>
+                                <span class="tag">REST API</span>
+                            </div>
+                            <a href="https://cedulaprofesional.sep.gob.mx/" target="_blank" class="project-link">
+                                Visitar Sitio <i data-lucide="external-link" class="link-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Gestión Centralizada de Inmuebles -->
+                <div class="project-card glass-card scroll-reveal">
+                    <div class="project-image-simulated">
+                        <div class="project-glow bg-cyan"></div>
+                        <div class="mock-browser-ui">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            <div class="mock-url">sep.cdmx/arrendamientos-centralizados</div>
+                        </div>
+                        <div class="project-preview-content">
+                            <div class="chart-bars">
+                                <span class="bar-s" style="height: 40%"></span>
+                                <span class="bar-s" style="height: 80%"></span>
+                                <span class="bar-s" style="height: 60%"></span>
+                                <span class="bar-s" style="height: 100%"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h4 class="project-name">Plataforma de Arrendamientos SEP CDMX</h4>
+                        <p class="project-desc">
+                            Diseño y desarrollo integral de un sistema centralizado para la administración del catálogo nacional de inmuebles arrendados.
+                        </p>
+                        <div class="project-problem-impact">
+                            <p><strong>Problema resuelto:</strong> Migración de procesos manuales a flujos digitales estructurados basados en micro-sitios e implementación de RBAC de alta seguridad.</p>
+                            <p><strong>Impacto:</strong> Digitalización completa con backend en Django/Python que incrementó el control institucional y redujo tiempos de auditoría escolar.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span class="tag">Python</span>
+                                <span class="tag">Django</span>
+                                <span class="tag">HTML / CSS</span>
+                                <span class="tag">Bootstrap</span>
+                            </div>
+                            <span class="project-link-disabled">Red Interna</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Landing Pages de Estrenos Cinematográficos -->
+                <div class="project-card glass-card scroll-reveal">
+                    <div class="project-image-simulated">
+                        <div class="project-glow bg-purple"></div>
+                        <div class="mock-browser-ui">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            <div class="mock-url">yelmocinespropuesta.netlify.app</div>
+                        </div>
+                        <div class="project-preview-content">
+                            <i data-lucide="sparkles" class="preview-sparkle"></i>
+                            <div class="cinematic-circle"></div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h4 class="project-name">Landing Pages Cinematográficas</h4>
+                        <p class="project-desc">
+                            Estructura de componentes web inmersivos reutilizables con alta demanda visual para promocionales de estrenos en cartelera internacional.
+                        </p>
+                        <div class="project-problem-impact">
+                            <p><strong>Problema resuelto:</strong> Necesidad de adaptar dinámicamente colores, layouts e identidades visuales específicas por película de forma rápida y escalable.</p>
+                            <p><strong>Impacto:</strong> Implementación de SCSS dinámico altamente parametrizado y SEO técnico impecable que garantizó posicionamiento orgánico rápido.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span class="tag">React JS</span>
+                                <span class="tag">SCSS</span>
+                                <span class="tag">SEO</span>
+                                <span class="tag">Responsive Design</span>
+                            </div>
+                            <a href="https://yelmocinespropuesta.netlify.app/" target="_blank" class="project-link">
+                                Visitar Demo <i data-lucide="external-link" class="link-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LIDERAZGO TÉCNICO -->
+        <section class="leadership-section scroll-reveal" id="leadership">
+            <div class="section-header center">
+                <span class="section-tagline">MÁS ALLÁ DEL CÓDIGO</span>
+                <h3 class="section-title">Liderazgo Técnico &amp; Habilidades Blandas</h3>
+            </div>
+
+            <div class="leadership-grid">
+
+                <div class="lead-card glass-card">
+                    <i data-lucide="git-pull-request" class="lead-icon blue"></i>
+                    <h5>Constructive Code Reviews</h5>
+                    <p>Fomento estándares estrictos de Clean Code, buenas prácticas y legibilidad mediante revisiones
+                        constructivas orientadas al crecimiento del equipo.</p>
+                </div>
+
+                <div class="lead-card glass-card">
+                    <i data-lucide="milestone" class="lead-icon green"></i>
+                    <h5>Liderazgo Técnico</h5>
+                    <p>Acompañamiento cercano a desarrolladores junior y mid-level. Definición clara de arquitecturas
+                        frontend modulares a gran escala.</p>
+                </div>
+
+                <div class="lead-card glass-card">
+                    <i data-lucide="zap" class="lead-icon purple"></i>
+                    <h5>Trabajo bajo Presión</h5>
+                    <p>Adaptabilidad y serenidad para tomar decisiones críticas en entornos de alta visibilidad, impacto
+                        operativo y fechas de entrega estrictas.</p>
+                </div>
+
+                <div class="lead-card glass-card">
+                    <i data-lucide="message-square-text" class="lead-icon cyan"></i>
+                    <h5>Comunicación Efectiva</h5>
+                    <p>Interlocución fluida y asertiva entre perfiles sumamente técnicos (ingeniería backend, QA) y no
+                        técnicos (stakeholders funcionales).</p>
+                </div>
+
+                <div class="lead-card glass-card">
+                    <i data-lucide="compass" class="lead-icon yellow"></i>
+                    <h5>Pensamiento Analítico</h5>
+                    <p>Capacidad innata para segmentar problemas altamente complejos y estructurar soluciones viables,
+                        limpias y mantenibles.</p>
+                </div>
+
+                <div class="lead-card glass-card">
+                    <i data-lucide="target" class="lead-icon orange"></i>
+                    <h5>Enfoque a Resultados</h5>
+                    <p>Organización autónoma bajo metodologías Scrum y Kanban, priorizando el valor de negocio y la
+                        estabilidad en producción de cada sprint.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CONTACTO -->
+        <section class="contact-section scroll-reveal" id="contact">
+            <div class="contact-container-inner glass-card">
+                <div class="contact-glow"></div>
+                <div class="contact-info">
+                    <span class="contact-tag">CONSTRUYAMOS ALGO JUNTOS</span>
+                    <h3 class="contact-title">¿Listo para impulsar tu ingeniería frontend?</h3>
+                    <p class="contact-text">
+                        Disponible para roles de liderazgo técnico frontend, consultorías de performance y arquitectura,
+                        o posiciones senior clave en equipos nacionales e internacionales de primer nivel.
+                    </p>
+
+                    <div class="contact-details">
+                        <a href="mailto:joseph.valencia.cisneros@gmail.com" class="contact-item">
+                            <i data-lucide="mail" class="contact-item-icon"></i>
+                            <span>joseph.valencia.cisneros@gmail.com</span>
+                        </a>
+                        <span class="contact-item">
+                            <i data-lucide="map-pin" class="contact-item-icon"></i>
+                            <span>Nayarit / CDMX / Morelia, México</span>
+                        </span>
+                        <span class="contact-item">
+                            <i data-lucide="languages" class="contact-item-icon"></i>
+                            <span>Español: Nativo | Inglés: B1 / B2 Técnico</span>
+                        </span>
+                    </div>
+
+                    <div class="contact-socials">
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Profile"
+                            class="social-link">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" aria-label="GitHub Profile" class="social-link">
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nombre Completo</label>
+                        <input type="text" id="name" class="form-input" placeholder="Tu nombre o empresa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" id="email" class="form-input" placeholder="ejemplo@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Mensaje</label>
+                        <textarea id="message" class="form-input text-area"
+                            placeholder="Describe brevemente tu propuesta técnica..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width" id="btn-submit">
+                        <span class="btn-text">Enviar Mensaje</span>
+                        <i data-lucide="send" class="btn-icon"></i>
+                    </button>
+                    <div class="form-status" id="form-status"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-brand">&copy; 2026 Joseph Valencia Cisneros. Todos los derechos reservados.</span>
+            <span class="footer-meta">Desarrollado en HTML5, CSS3 y JS puro con enfoque premium y responsivo.</span>
+        </div>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+
+</html>
