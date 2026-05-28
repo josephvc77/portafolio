@@ -672,8 +672,11 @@
                     </div>
                 </div>
 
-                <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
                     <input type="hidden" name="form-name" value="contact" />
+                    <p class="hidden" style="display:none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" type="text" /></label>
+                    </p>
                     <div class="form-group">
                         <label for="name" class="form-label">Nombre Completo</label>
                         <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre o empresa" required>
