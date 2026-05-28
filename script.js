@@ -227,80 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Simular descarga exitosa
             setTimeout(() => {
-                notification.innerHTML = `<i class="lucide-check-circle" style="color:#39ff14; width:18px; height:18px;"></i> <span>¡CV generado exitosamente! Descargando...</span>`;
+                notification.innerHTML = `<i class="lucide-check-circle" style="color:#39ff14; width:18px; height:18px;"></i> <span>¡CV listo! Descargando...</span>`;
                 
-                // Simulación real de descarga del CV estructurado del usuario
-                const cvText = `========================================================================
-JOSEPH VALENCIA CISNEROS - SENIOR FRONTEND / LÍDER TÉCNICO FRONTEND
-========================================================================
-
-Contacto:
-- Correo: joseph.valencia.cisneros@gmail.com
-- Ubicación: Nayarit / CDMX / Morelia, México
-- Idiomas: Español (Nativo) | Inglés B2 (Técnico / Colaboración funcional)
-
-------------------------------------------------------------------------
-PERFIL PROFESIONAL:
-Frontend Senior / Líder Técnico Frontend con +3 años de experiencia en el 
-diseño, desarrollo y liderazgo de aplicaciones web empresariales y 
-gubernamentales de alta criticidad. Especialista en Angular, React, Python
-y Django con fuerte enfoque en arquitectura frontend, performance,
-escalabilidad y experiencia de usuario. 
-
-------------------------------------------------------------------------
-EXPERIENCIA PROFESIONAL:
-
-1. Secretaría de Educación Pública (SEP) — Nayarit
-   Frontend Senior / Líder Frontend | 2024 – 2026
-   * Responsable técnico del Frontend del Registro Nacional de Profesionistas (RNP).
-   * Liderazgo de arquitectura frontend, componentes modulares y lineamientos de código.
-   * Interfaces escalables, responsivas y accesibles bajo estándares nacionales (WCAG).
-   * Colaboración y resolución de incidencias en Frontend y Backend (Java).
-   * Gestión de despliegues y pruebas unitarias con contenedores Docker.
-   * Uso de Git / GitFlow para control de versiones y revisiones de código de alta calidad.
-
-2. Secretaría de Educación Pública (SEP) — CDMX
-   Desarrollador Full Stack | 2023 – 2026
-   * Diseño y desarrollo integral de plataforma centralizada de inmuebles arrendados.
-   * Definición de arquitectura modular escalable en micro-sitios.
-   * Desarrollo del Backend en Python y Django, y Frontend en HTML, CSS y Bootstrap.
-   * Implementación de roles de acceso seguro (RBAC), autenticación y flujos CRUD.
-   * Digitalización y automatización de procesos operativos institucionales.
-
-3. IA Interactive C — Morelia, Michoacán
-   Desarrollador Frontend | 2022 – 2023
-   * Componentes reutilizables en React JS para portales de lanzamientos cinematográficos.
-   * Estructura dinámica en SCSS para tematización escalable por proyecto.
-   * Aplicación de mejores prácticas de SEO técnico y velocidad de carga.
-   * Colaboración en entornos ágiles con equipos de México, España, Honduras y Venezuela.
-
-------------------------------------------------------------------------
-EDUCACIÓN:
-
-* Licenciatura en Ingeniería en Desarrollo y Gestión de Software
-  Universidad Tecnológica de Morelia | 2021 – 2023
-* Técnico Superior Universitario en Tecnologías de la Información
-  Área: Desarrollo de Software Multiplataforma
-  Universidad Tecnológica de Morelia | 2019 – 2021
-
-------------------------------------------------------------------------
-HABILIDADES TÉCNICAS:
-
-* Frontend: Angular, React, JavaScript (ES6+), TypeScript, HTML5, CSS3, SASS, LESS
-* Backend: Python, Django, Java, RESTful APIs, Web Services
-* DevOps & Herramientas: Docker, Git, GitFlow, Visual Studio Code, IntelliJ, Jira, Figma
-* Bases de Datos: PostgreSQL, MySQL, MongoDB
-* Cloud: AWS (S3, EC2, RDS), Azure
-* Sistemas: Windows, macOS, Linux
-========================================================================`;
-                const mockBlob = new Blob([cvText], { type: "text/plain;charset=utf-8" });
-                const mockUrl = URL.createObjectURL(mockBlob);
-                const mockLink = document.createElement("a");
-                mockLink.href = mockUrl;
-                mockLink.download = "CV_Joseph_Valencia_Cisneros_Senior_Frontend.txt";
-                document.body.appendChild(mockLink);
-                mockLink.click();
-                document.body.removeChild(mockLink);
+                const realLink = document.createElement("a");
+                realLink.href = "CV_Joseph_Valencia_Cisneros.pdf";
+                realLink.download = "CV_Joseph_Valencia_Cisneros.pdf";
+                document.body.appendChild(realLink);
+                realLink.click();
+                document.body.removeChild(realLink);
                 
                 setTimeout(() => {
                     notification.style.transform = 'translateY(100px)';
@@ -309,7 +243,7 @@ HABILIDADES TÉCNICAS:
                         document.body.removeChild(notification);
                     }, 500);
                 }, 3000);
-            }, 2500);
+            }, 1500);
         });
     }
 
