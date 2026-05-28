@@ -1465,6 +1465,11 @@ a.contact-item:hover {
     box-shadow: 0 10px 20px var(--color-primary-glow);
 }
 
+.social-link i {
+    width: 20px;
+    height: 20px;
+}
+
 /* Formulario Stripe-Style */
 .contact-form {
     display: flex;
