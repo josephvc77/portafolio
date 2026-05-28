@@ -165,24 +165,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnSubmit.innerHTML = `<span>Enviando mensaje...</span> <i class="lucide-refresh-cw animate-spin" style="width:16px; height:16px;"></i>`;
                 btnSubmit.disabled = true;
                 
-                // Simulación de envío a endpoint real de alto nivel
-                setTimeout(() => {
-                    btnSubmit.innerHTML = `<span>¡Enviado con éxito!</span> <i class="lucide-check-circle" style="width:16px; height:16px; color:#39ff14;"></i>`;
-                    
-                    if (formStatus) {
-                        formStatus.className = 'form-status success';
-                        formStatus.textContent = '¡Gracias Joseph! Tu mensaje ha sido enviado. Me pondré en contacto contigo a la brevedad.';
+                // Serializar datos para envío a Netlify
+                const formData = new FormData(contactForm);
+                
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(response => {
+                    if (response.ok) {
+                        btnSubmit.innerHTML = `<span>¡Enviado con éxito!</span> <i class="lucide-check-circle" style="width:16px; height:16px; color:#39ff14;"></i>`;
+                        
+                        if (formStatus) {
+                            formStatus.style.display = 'block';
+                            formStatus.className = 'form-status success';
+                            formStatus.textContent = '¡Gracias Joseph! Tu mensaje ha sido enviado a través de Netlify Forms. Me pondré en contacto contigo a la brevedad.';
+                        }
+                        
+                        contactForm.reset();
+                        
+                        // Si hay recaptcha de Netlify, resetearlo si existe el objeto grecaptcha
+                        if (typeof grecaptcha !== 'undefined') {
+                            grecaptcha.reset();
+                        }
+                    } else {
+                        throw new Error('Error en la respuesta del servidor');
                     }
-                    
-                    contactForm.reset();
-                    
+                })
+                .catch(error => {
+                    btnSubmit.innerHTML = `<span>Error al enviar</span> <i class="lucide-alert-triangle" style="width:16px; height:16px; color:#ff3b30;"></i>`;
+                    if (formStatus) {
+                        formStatus.style.display = 'block';
+                        formStatus.className = 'form-status error';
+                        formStatus.textContent = 'Hubo un inconveniente al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame directamente por correo.';
+                    }
+                })
+                .finally(() => {
                     setTimeout(() => {
                         btnSubmit.innerHTML = origText;
                         btnSubmit.disabled = false;
                         if (formStatus) formStatus.style.display = 'none';
                     }, 5000);
-                    
-                }, 2000);
+                });
             }
         });
     }

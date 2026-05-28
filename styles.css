@@ -1488,6 +1488,12 @@ a.contact-item:hover {
     gap: 8px;
 }
 
+.recaptcha-group {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+}
+
 .form-label {
     font-size: 0.8rem;
     font-weight: 600;
