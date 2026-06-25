@@ -15,14 +15,93 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Vite Entry Point (CSS is imported inside main.ts) -->
+    <script type="module" src="/src/main.ts"></script>
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Instant Theme Detection to avoid FOUC -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <!-- SEO Técnico: Datos Estructurados JSON-LD (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://joseph-valencia-frontend.netlify.app/#person",
+          "name": "Joseph Valencia Cisneros",
+          "jobTitle": "Senior Frontend Engineer, Tech Lead &amp; Full Stack Developer",
+          "email": "noskedev@gmail.com",
+          "url": "https://joseph-valencia-frontend.netlify.app",
+          "image": "https://joseph-valencia-frontend.netlify.app/favicon.svg",
+          "sameAs": [
+            "https://github.com/josephvc77",
+            "https://www.linkedin.com/in/joseph-valencia-cisneros/"
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "nexusBPO",
+            "url": "https://nexus-frontend-s4ai.onrender.com/"
+          },
+          "knowsAbout": [
+            "Angular",
+            "React",
+            "Next.js",
+            "Node.js",
+            "TypeScript",
+            "JavaScript (ES6+)",
+            "Python",
+            "Django",
+            "Prisma",
+            "PostgreSQL",
+            "Docker",
+            "Frontend Architecture",
+            "Web Accessibility (WCAG 2.1)",
+            "SEO Técnico",
+            "Git / GitFlow"
+          ],
+          "knowsLanguage": [
+            {
+              "@type": "Language",
+              "name": "Spanish",
+              "alternateName": "es"
+            },
+            {
+              "@type": "Language",
+              "name": "English",
+              "alternateName": "en",
+              "description": "B1/B2 Technical English"
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://nexus-frontend-s4ai.onrender.com/#organization",
+          "name": "nexusBPO",
+          "url": "https://nexus-frontend-s4ai.onrender.com/",
+          "logo": "https://nexus-frontend-s4ai.onrender.com/logo.png",
+          "founder": {
+            "@id": "https://joseph-valencia-frontend.netlify.app/#person"
+          }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://joseph-valencia-frontend.netlify.app/#profilepage",
+          "url": "https://joseph-valencia-frontend.netlify.app",
+          "mainEntity": {
+            "@id": "https://joseph-valencia-frontend.netlify.app/#person"
+          },
+          "about": {
+            "@id": "https://joseph-valencia-frontend.netlify.app/#person"
+          },
+          "description": "Portafolio profesional de Joseph Valencia Cisneros, Frontend Senior Engineer y Tech Lead especializado en plataformas gubernamentales y corporativas de alta disponibilidad, y creador de nexusBPO."
+        }
+      ]
+    }
     </script>
 </head>
 
@@ -67,20 +146,23 @@
                 <li><a href="#contact" class="nav-link">Contacto</a></li>
             </ul>
             <div class="nav-actions">
+                <button class="cursor-toggle" id="cursor-toggle" aria-label="Alternar cursor personalizado" title="Activar/Desactivar cursor">
+                    <i data-lucide="mouse-pointer" class="icon-cursor-on"></i>
+                </button>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
                     <i data-lucide="sun" class="icon-sun"></i>
                     <i data-lucide="moon" class="icon-moon"></i>
                 </button>
-                <a href="#contact" class="btn-nav-cta">Contratar <i class="lucide-arrow-up-right"></i></a>
+                <a href="#contact" class="btn-nav-cta">Contratar <i data-lucide="arrow-up-right" class="btn-icon"></i></a>
             </div>
-            <button class="mobile-toggle" aria-label="Abrir menú">
+            <button class="mobile-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
                 <i data-lucide="menu"></i>
             </button>
         </nav>
     </header>
 
     <!-- Menú Móvil Expandido -->
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Menú de navegación móvil">
         <button class="mobile-close" aria-label="Cerrar menú">
             <i data-lucide="x"></i>
         </button>
@@ -105,7 +187,7 @@
                 <div class="badge-container animate-fade-up">
                     <span class="senior-badge">
                         <i data-lucide="shield-check" class="badge-icon"></i>
-                        Frontend Senior / Líder Técnico Frontend
+                        Frontend Senior / Tech Lead &amp; Full Stack Engineer
                     </span>
                 </div>
 
@@ -118,10 +200,11 @@
                 </h2>
 
                 <p class="hero-description animate-fade-up delay-3">
-                    ¡Hola! Soy Joseph Valencia, Frontend Engineer basado en México. Especializado en el desarrollo de
-                    plataformas empresariales y gubernamentales escalables utilizando Angular, React y TypeScript. Me
-                    apasiona diseñar arquitecturas limpias, optimizar el rendimiento frontend y construir componentes
-                    reutilizables enfocados en ofrecer una experiencia de usuario excepcional.
+                    ¡Hola! Soy Joseph Valencia, Frontend Engineer basado en México y creador de la empresa
+                    <a href="https://nexus-frontend-s4ai.onrender.com/" target="_blank" rel="noopener noreferrer" class="hero-link">nexusBPO</a>.
+                    Especializado en el desarrollo de plataformas empresariales y gubernamentales de alto rendimiento utilizando
+                    Angular, React, Next.js, Node.js y TypeScript, con amplia experiencia integrando bases de datos (PostgreSQL, Prisma)
+                    y robustas arquitecturas backend en Django.
                 </p>
 
                 <div class="hero-ctas animate-fade-up delay-4">
@@ -149,11 +232,22 @@
                             <span class="mockup-dot yellow"></span>
                             <span class="mockup-dot green"></span>
                         </div>
-                        <div class="mockup-tab"><i data-lucide="cpu" class="tab-icon"></i>
-                            valencia-architecture.config.ts</div>
+                        <div class="mockup-tabs">
+                            <button class="mockup-tab active" data-tab="architecture">
+                                <i data-lucide="file-code" class="tab-icon"></i> architecture.ts
+                            </button>
+                            <button class="mockup-tab" data-tab="docker">
+                                <i data-lucide="box" class="tab-icon"></i> docker-compose.yml
+                            </button>
+                            <button class="mockup-tab" data-tab="terminal">
+                                <i data-lucide="terminal" class="tab-icon"></i> terminal.sh
+                            </button>
+                        </div>
                     </div>
                     <div class="mockup-body">
-                        <pre><code><span class="token keyword">import</span> { <span class="token definition">FrontendArchitecture</span> } <span class="token keyword">from</span> <span class="token string">'@joseph-valencia/core'</span>;
+                        <!-- Tab 1: Architecture Code -->
+                        <div class="mockup-tab-content active" id="tab-architecture">
+                            <pre><code><span class="token keyword">import</span> { <span class="token definition">FrontendArchitecture</span> } <span class="token keyword">from</span> <span class="token string">'@joseph-valencia/core'</span>;
 
 <span class="token keyword">export const</span> <span class="token variable">techLeadConfig</span> = <span class="token keyword">new</span> <span class="token class">FrontendArchitecture</span>({
   experience: <span class="token string">'+3 Years'</span>,
@@ -166,6 +260,42 @@
     dockerizedDeploy: <span class="token boolean">true</span>
   }
 });</code></pre>
+                        </div>
+                        <!-- Tab 2: Docker Compose Code -->
+                        <div class="mockup-tab-content" id="tab-docker">
+                            <pre><code><span class="token keyword">version</span>: <span class="token string">'3.8'</span>
+
+<span class="token keyword">services</span>:
+  <span class="token variable">frontend-rnp</span>:
+    <span class="token keyword">build</span>:
+      <span class="token keyword">context</span>: ./frontend
+      <span class="token keyword">dockerfile</span>: Dockerfile.prod
+    <span class="token keyword">ports</span>:
+      - <span class="token string">"80:80"</span>
+    <span class="token keyword">environment</span>:
+      - <span class="token variable">NODE_ENV</span>=production
+    <span class="token keyword">restart</span>: always
+    <span class="token keyword">networks</span>:
+      - sep-national-net
+
+<span class="token keyword">networks</span>:
+  <span class="token variable">sep-national-net</span>:
+    <span class="token keyword">driver</span>: bridge</code></pre>
+                        </div>
+                        <!-- Tab 3: Terminal Console -->
+                        <div class="mockup-tab-content" id="tab-terminal">
+                            <div class="terminal-output" id="terminal-output">
+                                <div><span class="terminal-prompt">guest@jvc-portfolio:~$</span> welcome</div>
+                                <div class="terminal-welcome-msg">
+                                    Bienvenido al terminal interactivo de Joseph Valencia.
+                                    Escribe <span class="terminal-highlight">help</span> para ver los comandos disponibles.
+                                </div>
+                            </div>
+                            <div class="terminal-input-line">
+                                <span class="terminal-prompt">guest@jvc-portfolio:~$</span>
+                                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -188,6 +318,8 @@
                     <p class="about-paragraph">
                         Cuento con amplia experiencia trabajando bajo presión, asumiendo proyectos gubernamentales y
                         empresariales con fechas de entrega sumamente estrictas y de alto impacto operativo nacional.
+                        Además, soy el creador y fundador de <strong>nexusBPO</strong>, una plataforma de gestión
+                        de instalaciones orientada a optimizar flujos operativos a gran escala.
                     </p>
                     <p class="about-paragraph">
                         Mi filosofía se centra en la fusión impecable de una excelente comunicación funcional,
@@ -231,8 +363,8 @@
                     </div>
                     <div class="stat-card glass-card">
                         <div class="stat-glow"></div>
-                        <span class="stat-number">Full</span>
-                        <span class="stat-label">Stack Capabilities (Python/Django)</span>
+                        <span class="stat-number">Founder</span>
+                        <span class="stat-label">Creador de nexusBPO</span>
                     </div>
                 </div>
             </div>
@@ -249,7 +381,7 @@
                 <div class="timeline-line"></div>
 
                 <!-- Exp 1: SEP Nayarit -->
-                <div class="timeline-item scroll-reveal">
+                <div class="timeline-item scroll-reveal" data-tech="angular typescript docker java git rest-api">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content glass-card">
                         <div class="timeline-header">
@@ -278,7 +410,7 @@
                 </div>
 
                 <!-- Exp 2: SEP CDMX -->
-                <div class="timeline-item scroll-reveal">
+                <div class="timeline-item scroll-reveal" data-tech="python django html-css sass rest-api git">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content glass-card">
                         <div class="timeline-header">
@@ -306,7 +438,7 @@
                 </div>
 
                 <!-- Exp 3: IA Interactive -->
-                <div class="timeline-item scroll-reveal">
+                <div class="timeline-item scroll-reveal" data-tech="react sass seo responsive figma">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content glass-card">
                         <div class="timeline-header">
@@ -351,16 +483,16 @@
                         <h4>Frontend Core</h4>
                     </div>
                     <div class="skills-badges-wrapper">
-                        <span class="skill-badge blue">Angular</span>
-                        <span class="skill-badge blue">React JS</span>
-                        <span class="skill-badge blue">JavaScript (ES6+)</span>
-                        <span class="skill-badge blue">TypeScript</span>
-                        <span class="skill-badge blue">HTML5 &amp; CSS3</span>
-                        <span class="skill-badge blue">SASS / LESS</span>
-                        <span class="skill-badge blue">Responsive Design</span>
-                        <span class="skill-badge blue">Accesibilidad (WCAG)</span>
-                        <span class="skill-badge blue">SEO Técnico</span>
-                        <span class="skill-badge blue">Performance Tuning</span>
+                        <span class="skill-badge blue" data-tech="angular">Angular</span>
+                        <span class="skill-badge blue" data-tech="react">React JS</span>
+                        <span class="skill-badge blue" data-tech="javascript">JavaScript (ES6+)</span>
+                        <span class="skill-badge blue" data-tech="typescript">TypeScript</span>
+                        <span class="skill-badge blue" data-tech="html-css">HTML5 &amp; CSS3</span>
+                        <span class="skill-badge blue" data-tech="sass">SASS / LESS</span>
+                        <span class="skill-badge blue" data-tech="responsive">Responsive Design</span>
+                        <span class="skill-badge blue" data-tech="accessibility">Accesibilidad (WCAG)</span>
+                        <span class="skill-badge blue" data-tech="seo">SEO Técnico</span>
+                        <span class="skill-badge blue" data-tech="performance">Performance Tuning</span>
                     </div>
                 </div>
 
@@ -372,12 +504,12 @@
                         <h4>Backend &amp; Integración</h4>
                     </div>
                     <div class="skills-badges-wrapper">
-                        <span class="skill-badge green">Python</span>
-                        <span class="skill-badge green">Django</span>
-                        <span class="skill-badge green">Java</span>
-                        <span class="skill-badge green">APIs REST</span>
-                        <span class="skill-badge green">Web Services</span>
-                        <span class="skill-badge green">Integración FE-BE</span>
+                        <span class="skill-badge green" data-tech="python">Python</span>
+                        <span class="skill-badge green" data-tech="django">Django</span>
+                        <span class="skill-badge green" data-tech="java">Java</span>
+                        <span class="skill-badge green" data-tech="rest-api">APIs REST</span>
+                        <span class="skill-badge green" data-tech="rest-api">Web Services</span>
+                        <span class="skill-badge green" data-tech="rest-api">Integración FE-BE</span>
                     </div>
                 </div>
 
@@ -389,14 +521,14 @@
                         <h4>DevOps &amp; Tools</h4>
                     </div>
                     <div class="skills-badges-wrapper">
-                        <span class="skill-badge purple">Docker</span>
-                        <span class="skill-badge purple">Git / GitFlow</span>
-                        <span class="skill-badge purple">Visual Studio Code</span>
-                        <span class="skill-badge purple">IntelliJ IDEA</span>
-                        <span class="skill-badge purple">Jira</span>
-                        <span class="skill-badge purple">Figma</span>
-                        <span class="skill-badge purple">AWS (S3, EC2, RDS)</span>
-                        <span class="skill-badge purple">Azure</span>
+                        <span class="skill-badge purple" data-tech="docker">Docker</span>
+                        <span class="skill-badge purple" data-tech="git">Git / GitFlow</span>
+                        <span class="skill-badge purple" data-tech="vs-code">Visual Studio Code</span>
+                        <span class="skill-badge purple" data-tech="intellij">IntelliJ IDEA</span>
+                        <span class="skill-badge purple" data-tech="jira">Jira</span>
+                        <span class="skill-badge purple" data-tech="figma">Figma</span>
+                        <span class="skill-badge purple" data-tech="aws">AWS (S3, EC2, RDS)</span>
+                        <span class="skill-badge purple" data-tech="azure">Azure</span>
                     </div>
                 </div>
 
@@ -408,12 +540,12 @@
                         <h4>Bases de Datos &amp; SO</h4>
                     </div>
                     <div class="skills-badges-wrapper">
-                        <span class="skill-badge cyan">PostgreSQL</span>
-                        <span class="skill-badge cyan">MySQL</span>
-                        <span class="skill-badge cyan">MongoDB</span>
-                        <span class="skill-badge cyan">Linux</span>
-                        <span class="skill-badge cyan">macOS</span>
-                        <span class="skill-badge cyan">Windows</span>
+                        <span class="skill-badge cyan" data-tech="postgresql">PostgreSQL</span>
+                        <span class="skill-badge cyan" data-tech="mysql">MySQL</span>
+                        <span class="skill-badge cyan" data-tech="mongodb">MongoDB</span>
+                        <span class="skill-badge cyan" data-tech="linux">Linux</span>
+                        <span class="skill-badge cyan" data-tech="macos">macOS</span>
+                        <span class="skill-badge cyan" data-tech="windows">Windows</span>
                     </div>
                 </div>
             </div>
@@ -428,17 +560,107 @@
 
             <div class="projects-grid">
 
-                <!-- Project 1: Ikigai App (Ecosistema Móvil IA Salud) -->
-                <div class="project-card glass-card scroll-reveal">
-                    <div class="project-image-simulated">
-                        <div class="project-glow bg-purple"></div>
-                        <div class="mock-browser-ui">
-                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                            <div class="mock-url">ikigaiapp.health.mobile</div>
+                <!-- Project 0: nexusBPO (Gestión de Instalaciones) -->
+                <div class="project-card glass-card scroll-reveal" data-tech="angular typescript html-css responsive rest-api git performance">
+                    <div class="project-image-simulated project-sim-nexus">
+                        <div class="project-glow bg-cyan"></div>
+                        <div class="nexus-container">
+                            <div class="nexus-header">
+                                <div class="nexus-brand">
+                                    <i data-lucide="layers" class="nexus-logo-icon"></i>
+                                    <span class="nexus-logo-text">nexusBPO</span>
+                                </div>
+                                <div class="nexus-status">
+                                    <span class="nexus-status-dot"></span>
+                                    <span class="nexus-status-text">Live Hub</span>
+                                </div>
+                            </div>
+                            <div class="nexus-tabs">
+                                <button class="nexus-tab-btn active" id="nexus-btn-map" aria-label="Ver Mapa de Instalaciones">
+                                    <i data-lucide="map" class="nexus-tab-icon"></i> Mapa
+                                </button>
+                                <button class="nexus-tab-btn" id="nexus-btn-stats" aria-label="Ver Métricas de Servicios">
+                                    <i data-lucide="bar-chart-3" class="nexus-tab-icon"></i> Métricas
+                                </button>
+                            </div>
+                            <div class="nexus-content" id="nexus-simulator-content">
+                                <!-- Vista de Mapa por defecto -->
+                                <div class="nexus-map-view">
+                                    <div class="nexus-map-grid">
+                                        <div class="nexus-grid-line h-1"></div>
+                                        <div class="nexus-grid-line h-2"></div>
+                                        <div class="nexus-grid-line v-1"></div>
+                                        <div class="nexus-grid-line v-2"></div>
+                                        <!-- Marcador de instalación geolocalizada 1 -->
+                                        <div class="nexus-marker pulse-1" style="top: 30%; left: 45%;">
+                                            <div class="nexus-marker-dot"></div>
+                                            <div class="nexus-marker-tooltip">CDMX: Corporativo A (Activo)</div>
+                                        </div>
+                                        <!-- Marcador de instalación geolocalizada 2 -->
+                                        <div class="nexus-marker pulse-2" style="top: 60%; left: 70%;">
+                                            <div class="nexus-marker-dot"></div>
+                                            <div class="nexus-marker-tooltip">MTY: Cedis Norte (Normal)</div>
+                                        </div>
+                                    </div>
+                                    <div class="nexus-map-legend">
+                                        <span><i data-lucide="map-pin" class="legend-icon"></i> 24 Sedes Monitoreadas</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-preview-content">
-                            <div class="gov-shield-icon"><i data-lucide="smartphone"></i></div>
-                            <div class="gov-text">IKIGAI IA</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-badge-founder">CREADOR &amp; FOUNDER</div>
+                        <h4 class="project-name">nexusBPO - Gestión de Instalaciones</h4>
+                        <p class="project-desc">
+                            Plataforma de software empresarial para Business Process Outsourcing enfocada en la administración centralizada, mantenimiento correctivo/preventivo y georreferenciación de activos e infraestructura corporativa.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span class="tag">Angular</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">Leaflet</span>
+                                <span class="tag">REST API</span>
+                            </div>
+                            <a href="https://nexus-frontend-s4ai.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                Visitar App <i data-lucide="external-link" class="link-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1: Ikigai App (Ecosistema Móvil IA Salud) -->
+                <div class="project-card glass-card scroll-reveal" data-tech="react django python rest-api typescript">
+                    <div class="project-image-simulated project-sim-phone">
+                        <div class="project-glow bg-purple"></div>
+                        <div class="phone-screen">
+                            <div class="phone-header">
+                                <span class="phone-time">12:51</span>
+                                <div class="phone-notch"></div>
+                                <div class="phone-signals">
+                                    <i data-lucide="wifi" class="phone-icon-small"></i>
+                                    <i data-lucide="battery" class="phone-icon-small"></i>
+                                </div>
+                            </div>
+                            <div class="phone-app-bar">
+                                <div class="phone-user-avatar">I</div>
+                                <div class="phone-user-info">
+                                    <span class="phone-user-name">Ikigai AI</span>
+                                    <span class="phone-user-status">en línea</span>
+                                </div>
+                                <i data-lucide="bot" class="phone-call-icon"></i>
+                            </div>
+                            <div class="phone-chat-body" id="ikigai-chat-body">
+                                <div class="chat-message bot">¡Hola! Soy tu asistente Ikigai. ¿En qué trabajamos hoy?</div>
+                                <div class="chat-message user">Quiero mejorar mi enfoque y rutina diaria.</div>
+                                <div class="chat-message bot">Te recomiendo iniciar con 5 minutos de mindfulness y un bloque de trabajo pomodoro.</div>
+                            </div>
+                            <div class="phone-input-bar">
+                                <input type="text" class="phone-input" id="ikigai-phone-input" placeholder="Preguntar a la IA..." disabled>
+                                <button class="phone-send-btn" id="ikigai-send-trigger" aria-label="Enviar mensaje">
+                                    <i data-lucide="send"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="project-body">
@@ -446,10 +668,6 @@
                         <p class="project-desc">
                             Ecosistema de salud holístico (salud mental, nutrición y deporte) potenciado por asistentes de IA multimodales (Gemini API) y control de voz interactivo en tiempo real (STT).
                         </p>
-                        <div class="project-problem-impact">
-                            <p><strong>Desafío de IA:</strong> Interacción fluida por voz asíncrona de baja latencia con procesamiento en DRF y optimización del procesamiento de lenguaje natural en tiempo real.</p>
-                            <p><strong>Impacto:</strong> Arquitectura móvil desconectada (offline-first) altamente segura, sanitización estricta de entradas y testing de integración continuo.</p>
-                        </div>
                         <div class="project-footer">
                             <div class="project-tech">
                                 <span class="tag">React Native</span>
@@ -465,16 +683,27 @@
                 </div>
 
                 <!-- Project 2: Registro Nacional de Profesionistas (RNP) -->
-                <div class="project-card glass-card scroll-reveal">
-                    <div class="project-image-simulated">
+                <div class="project-card glass-card scroll-reveal" data-tech="angular typescript docker rest-api git accessibility">
+                    <div class="project-image-simulated project-sim-rnp">
                         <div class="project-glow bg-blue"></div>
-                        <div class="mock-browser-ui">
-                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                            <div class="mock-url">sep.gob.mx/registro-profesionistas</div>
-                        </div>
-                        <div class="project-preview-content">
-                            <div class="gov-shield-icon"><i data-lucide="milestone"></i></div>
-                            <div class="gov-text">RNP NACIONAL</div>
+                        <div class="rnp-container">
+                            <div class="rnp-header">
+                                <i data-lucide="shield-check" class="rnp-logo-icon"></i>
+                                <span>RNP - Validación Oficial</span>
+                            </div>
+                            <div class="rnp-search-box">
+                                <input type="text" class="rnp-input" id="rnp-search-input" placeholder="Buscar por nombre o cédula..." autocomplete="off">
+                                <i data-lucide="search" class="rnp-search-icon"></i>
+                            </div>
+                            <div class="rnp-results" id="rnp-results-container">
+                                <div class="rnp-result-card">
+                                    <div class="rnp-result-header">
+                                        <span class="rnp-badge-valid">CÉDULA ACTIVA</span>
+                                    </div>
+                                    <span class="rnp-result-name">VALENCIA CISNEROS JOSEPH</span>
+                                    <span class="rnp-result-title">ING. EN DESARROLLO DE SOFTWARE</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="project-body">
@@ -482,10 +711,6 @@
                         <p class="project-desc">
                             Arquitectura y desarrollo frontend de la plataforma crítica a nivel nacional para la validación y gestión de registros profesionales y cédulas.
                         </p>
-                        <div class="project-problem-impact">
-                            <p><strong>Problema resuelto:</strong> Integridad en flujos transaccionales y validaciones asíncronas complejas, optimizando el rendimiento para millones de usuarios institucionales.</p>
-                            <p><strong>Impacto:</strong> Interfaces accesibles responsivas y reducción drástica en tiempos de fricción operativa en el portal nacional.</p>
-                        </div>
                         <div class="project-footer">
                             <div class="project-tech">
                                 <span class="tag">Angular</span>
@@ -501,19 +726,34 @@
                 </div>
 
                 <!-- Project 3: Gestión Centralizada de Inmuebles -->
-                <div class="project-card glass-card scroll-reveal">
-                    <div class="project-image-simulated">
+                <div class="project-card glass-card scroll-reveal" data-tech="python django html-css rest-api">
+                    <div class="project-image-simulated project-sim-properties">
                         <div class="project-glow bg-cyan"></div>
-                        <div class="mock-browser-ui">
-                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                            <div class="mock-url">sep.cdmx/arrendamientos-centralizados</div>
-                        </div>
-                        <div class="project-preview-content">
-                            <div class="chart-bars">
-                                <span class="bar-s" style="height: 40%"></span>
-                                <span class="bar-s" style="height: 80%"></span>
-                                <span class="bar-s" style="height: 60%"></span>
-                                <span class="bar-s" style="height: 100%"></span>
+                        <div class="prop-dashboard">
+                            <div class="prop-header">
+                                <span>Control Inmuebles SEP</span>
+                                <span class="prop-count" id="prop-active-count">4 Activos</span>
+                            </div>
+                            <div class="prop-grid">
+                                <div class="prop-item occupied" data-id="1">
+                                    <span class="prop-name">Oficinas CDMX Sur</span>
+                                    <span class="prop-status">Rentado</span>
+                                </div>
+                                <div class="prop-item occupied" data-id="2">
+                                    <span class="prop-name">Bodega Central</span>
+                                    <span class="prop-status">Rentado</span>
+                                </div>
+                                <div class="prop-item occupied" data-id="3">
+                                    <span class="prop-name">Delegación Norte</span>
+                                    <span class="prop-status">Rentado</span>
+                                </div>
+                                <div class="prop-item vacant" data-id="4">
+                                    <span class="prop-name">Archivo General</span>
+                                    <span class="prop-status">Disponible</span>
+                                </div>
+                            </div>
+                            <div class="prop-details" id="prop-detail-box">
+                                Selecciona un inmueble para auditar
                             </div>
                         </div>
                     </div>
@@ -522,10 +762,6 @@
                         <p class="project-desc">
                             Diseño y desarrollo integral de un sistema centralizado para la administración del catálogo nacional de inmuebles arrendados.
                         </p>
-                        <div class="project-problem-impact">
-                            <p><strong>Problema resuelto:</strong> Migración de procesos manuales a flujos digitales estructurados basados en micro-sitios e implementación de RBAC de alta seguridad.</p>
-                            <p><strong>Impacto:</strong> Digitalización completa con backend en Django/Python que incrementó el control institucional y redujo tiempos de auditoría escolar.</p>
-                        </div>
                         <div class="project-footer">
                             <div class="project-tech">
                                 <span class="tag">Python</span>
@@ -539,16 +775,23 @@
                 </div>
 
                 <!-- Project 4: Landing Pages de Estrenos Cinematográficos -->
-                <div class="project-card glass-card scroll-reveal">
-                    <div class="project-image-simulated">
-                        <div class="project-glow bg-purple"></div>
-                        <div class="mock-browser-ui">
-                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                            <div class="mock-url">yelmocinespropuesta.netlify.app</div>
-                        </div>
-                        <div class="project-preview-content">
-                            <i data-lucide="sparkles" class="preview-sparkle"></i>
-                            <div class="cinematic-circle"></div>
+                <div class="project-card glass-card scroll-reveal" data-tech="react sass seo responsive figma">
+                    <div class="project-image-simulated project-sim-cinema" id="cinema-preview-container">
+                        <div class="project-glow bg-purple" id="cinema-glow"></div>
+                        <div class="cinema-interface">
+                            <div class="cinema-movie-card">
+                                <div class="cinema-movie-header">
+                                    <span class="cinema-genre">ESTRENO INMERSIVO</span>
+                                    <h5 class="cinema-movie-title" id="cinema-title">Interstellar</h5>
+                                </div>
+                                <p class="cinema-movie-desc" id="cinema-desc">El fin de la Tierra no será el fin de la humanidad. Viaje al espacio exterior.</p>
+                                <button class="cinema-booking-btn" id="cinema-action-btn">Reservar Boletos</button>
+                            </div>
+                            <div class="cinema-theme-selector">
+                                <button class="theme-chip active" data-movie="interstellar" title="Tema Espacio">Interstellar</button>
+                                <button class="theme-chip" data-movie="cyberpunk" title="Tema Neon">Cyberpunk</button>
+                                <button class="theme-chip" data-movie="classic" title="Tema Clásico">Noir</button>
+                            </div>
                         </div>
                     </div>
                     <div class="project-body">
@@ -556,10 +799,6 @@
                         <p class="project-desc">
                             Estructura de componentes web inmersivos reutilizables con alta demanda visual para promocionales de estrenos en cartelera internacional.
                         </p>
-                        <div class="project-problem-impact">
-                            <p><strong>Problema resuelto:</strong> Necesidad de adaptar dinámicamente colores, layouts e identidades visuales específicas por película de forma rápida y escalable.</p>
-                            <p><strong>Impacto:</strong> Implementación de SCSS dinámico altamente parametrizado y SEO técnico impecable que garantizó posicionamiento orgánico rápido.</p>
-                        </div>
                         <div class="project-footer">
                             <div class="project-tech">
                                 <span class="tag">React JS</span>
@@ -643,10 +882,14 @@
                     </p>
 
                     <div class="contact-details">
-                        <a href="mailto:noskedev@gmail.com" class="contact-item">
+                        <a href="mailto:noskedev@gmail.com" class="contact-item" id="contact-email-link">
                             <i data-lucide="mail" class="contact-item-icon"></i>
                             <span>noskedev@gmail.com</span>
                         </a>
+                        <button type="button" class="contact-item btn-copy-email" id="btn-copy-email" aria-label="Copiar correo al portapapeles" title="Copiar correo">
+                            <i data-lucide="copy" class="contact-item-icon"></i>
+                            <span>Copiar correo</span>
+                        </button>
                         <span class="contact-item">
                             <i data-lucide="map-pin" class="contact-item-icon"></i>
                             <span>Nayarit / CDMX / Morelia, México</span>
@@ -681,16 +924,16 @@
                     </p>
                     <div class="form-group">
                         <label for="name" class="form-label">Nombre Completo</label>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre o empresa" required>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre o empresa" required aria-required="true" aria-describedby="form-status">
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="ejemplo@correo.com" required>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="ejemplo@correo.com" required aria-required="true" aria-describedby="form-status">
                     </div>
                     <div class="form-group">
                         <label for="message" class="form-label">Mensaje</label>
                         <textarea id="message" name="message" class="form-input text-area"
-                            placeholder="Describe brevemente tu propuesta técnica..." required></textarea>
+                            placeholder="Describe brevemente tu propuesta técnica..." required aria-required="true" aria-describedby="form-status"></textarea>
                     </div>
                     <div class="form-group recaptcha-group">
                         <div data-netlify-recaptcha="true"></div>
@@ -699,7 +942,7 @@
                         <span class="btn-text">Enviar Mensaje</span>
                         <i data-lucide="send" class="btn-icon"></i>
                     </button>
-                    <div class="form-status" id="form-status"></div>
+                    <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
                 </form>
             </div>
         </section>
@@ -714,8 +957,10 @@
         </div>
     </footer>
 
-    <!-- Script principal -->
-    <script src="script.js"></script>
+    <!-- Toast de Notificación Premium -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Script principal (removido y cargado como módulo en el head) -->
 </body>
 
 </html>
