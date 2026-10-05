@@ -1,0 +1,207 @@
+/* ==========================================================================
+   DESIGN TOKENS — "Blueprint"
+   The portfolio reads as a system diagram: graphite ground, hairline
+   structure, one electric signal colour, one warm "live" colour.
+   Every value used by components must come from here.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Colour: dark (default) ------------------------------------------ */
+  --color-bg: #0b0c0f;
+  --color-bg-raised: #101217;
+  --color-surface: #14171d;
+  --color-surface-strong: #1b1f27;
+  --color-line: rgb(232 236 242 / 0.08);
+  --color-line-strong: rgb(232 236 242 / 0.16);
+
+  --color-text: #eef1f5;          /* 17.3:1 on bg */
+  --color-text-muted: #a3aab6;    /* 8.4:1 on bg  */
+  --color-text-subtle: #7d8491;   /* 5.2:1 on bg — labels only */
+
+  --color-accent: #5b93ff;        /* signal: links, focus, active nodes (6.6:1) */
+  --color-accent-strong: #3a74f5;
+  --color-accent-soft: rgb(91 147 255 / 0.14);
+  --color-accent-contrast: #05070b;
+
+  --color-live: #ffb44d;          /* warm secondary — "live / active" states only */
+  --color-live-soft: rgb(255 180 77 / 0.14);
+
+  --color-success: #4cc38a;
+  --color-danger: #ff6b6b;
+
+  /* Scene colours are read by Three.js (src/three/core/theme.ts) so 3D always
+     matches the theme. Plain hex only — WebGL colours can't parse var()/alpha. */
+  --scene-node: #dfe6f2;
+  --scene-line: #7d8491;
+  --scene-accent: #5b93ff;
+  --scene-live: #ffb44d;
+  --scene-fog: #0b0c0f;
+  --scene-blend: additive;
+
+  /* ---- Glass ----------------------------------------------------------- */
+  --glass-bg: rgb(20 23 29 / 0.62);
+  --glass-bg-hover: rgb(27 31 39 / 0.72);
+  --glass-border: rgb(232 236 242 / 0.10);
+  --glass-border-hover: rgb(232 236 242 / 0.20);
+  --glass-highlight: rgb(255 255 255 / 0.06);
+  --glass-shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  --glass-blur: 18px;
+  --glass-saturate: 140%;
+  --glass-radius: var(--radius-lg);
+
+  /* ---- Typography ------------------------------------------------------ */
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Fluid scale (min @ 360px → max @ 1440px) */
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.96rem + 0.19vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.06rem + 0.28vw, 1.3125rem);
+  --text-xl: clamp(1.375rem, 1.23rem + 0.65vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.46rem + 1.3vw, 2.625rem);
+  --text-3xl: clamp(2.25rem, 1.72rem + 2.4vw, 4rem);
+  --text-display: clamp(2.75rem, 1.6rem + 5.1vw, 6.75rem);
+
+  --leading-tight: 1.02;
+  --leading-snug: 1.18;
+  --leading-body: 1.6;
+  --tracking-display: -0.045em;
+  --tracking-heading: -0.025em;
+  --tracking-label: 0.08em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --measure: 62ch;
+
+  /* ---- Space (4px base) ------------------------------------------------ */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --gutter: clamp(1rem, 0.6rem + 1.8vw, 2.5rem);
+  --section-space: clamp(5rem, 3.4rem + 7vw, 10rem);
+  --container: 82rem;
+  --header-height: 4rem;
+
+  /* ---- Shape ----------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --hairline: 1px solid var(--color-line);
+
+  /* ---- Elevation (used sparingly; depth comes mostly from light & blur) */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 30px 60px -30px rgb(0 0 0 / 0.7);
+
+  /* ---- Motion — mirrored in src/motion/tokens.ts ----------------------- */
+  --dur-instant: 120ms;
+  --dur-fast: 240ms;
+  --dur-base: 480ms;
+  --dur-slow: 800ms;
+  --dur-cinematic: 1200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---- Layers ---------------------------------------------------------- */
+  --z-scene: 0;
+  --z-content: 1;
+  --z-raised: 10;
+  --z-header: 50;
+  --z-overlay: 80;
+  --z-cursor: 90;
+  --z-toast: 100;
+  --z-skip: 110;
+
+  /* ---- Breakpoints (reference — CSS can't use vars in @media) ----------
+     sm 30em (480) · md 48em (768) · lg 64em (1024) · xl 90em (1440)       */
+}
+
+/* ---- Colour: light ------------------------------------------------------ */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #f3f4f6;
+  --color-bg-raised: #ffffff;
+  --color-surface: #e9ebef;
+  --color-surface-strong: #dde0e6;
+  --color-line: rgb(13 15 19 / 0.09);
+  --color-line-strong: rgb(13 15 19 / 0.18);
+
+  --color-text: #0d0f13;          /* 17.4:1 */
+  --color-text-muted: #474e5b;    /* 7.6:1  */
+  --color-text-subtle: #5f6674;   /* 5.2:1  */
+
+  --color-accent: #1d5be0;        /* 5.3:1 */
+  --color-accent-strong: #1446b8;
+  --color-accent-soft: rgb(29 91 224 / 0.1);
+  --color-accent-contrast: #ffffff;
+
+  --color-live: #8a5000;          /* ≥5:1 on every light surface */
+  --color-live-soft: rgb(138 80 0 / 0.1);
+
+  --color-success: #1c7f50;
+  --color-danger: #c62828;
+
+  --scene-node: #3b4352;
+  --scene-line: #8b919c;
+  --scene-accent: #1d5be0;
+  --scene-live: #8a5000;
+  --scene-fog: #f3f4f6;
+  --scene-blend: normal;
+
+  --glass-bg: rgb(255 255 255 / 0.66);
+  --glass-bg-hover: rgb(255 255 255 / 0.8);
+  --glass-border: rgb(13 15 19 / 0.08);
+  --glass-border-hover: rgb(13 15 19 / 0.16);
+  --glass-highlight: rgb(255 255 255 / 0.7);
+  --glass-shadow: 0 1px 0 rgb(255 255 255 / 0.8) inset, 0 24px 48px -28px rgb(13 15 19 / 0.25);
+
+  --shadow-sm: 0 1px 2px rgb(13 15 19 / 0.08);
+  --shadow-lg: 0 30px 60px -30px rgb(13 15 19 / 0.25);
+}
+
+/* Mobile: glass blur is expensive on low-end GPUs. */
+@media (max-width: 48em) {
+  :root {
+    --glass-blur: 12px;
+    --header-height: 3.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+    --dur-cinematic: 1ms;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root:not([data-theme='light']) {
+    --color-line: rgb(232 236 242 / 0.28);
+    --color-text-muted: #c9ced6;
+    --glass-bg: var(--color-surface);
+  }
+  :root[data-theme='light'] {
+    --color-line: rgb(13 15 19 / 0.3);
+    --color-text-muted: #2f3540;
+    --glass-bg: var(--color-bg-raised);
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "rnp": {
+    "url": "https://cedulaprofesional.sep.gob.mx/",
+    "capturedAt": "2026-10-04",
+    "desktop": {
+      "src": "/previews/rnp-desktop.webp",
+      "width": 1440,
+      "height": 900
+    },
+    "scroll": {
+      "src": "/previews/rnp-scroll.webp",
+      "width": 1080,
+      "height": 1145
+    },
+    "mobile": {
+      "src": "/previews/rnp-mobile.webp",
+      "width": 780,
+      "height": 1688
+    }
+  },
+  "cinema-landings": {
+    "url": "https://yelmocinespropuesta.netlify.app/",
+    "capturedAt": "2026-10-04",
+    "desktop": {
+      "src": "/previews/cinema-landings-desktop.webp",
+      "width": 1440,
+      "height": 900
+    },
+    "scroll": {
+      "src": "/previews/cinema-landings-scroll.webp",
+      "width": 1080,
+      "height": 675
+    },
+    "mobile": {
+      "src": "/previews/cinema-landings-mobile.webp",
+      "width": 780,
+      "height": 1688
+    }
+  },
+  "kiln-store": {
+    "url": "https://kilnstore.netlify.app/",
+    "capturedAt": "2026-10-04",
+    "desktop": {
+      "src": "/previews/kiln-store-desktop.webp",
+      "width": 1440,
+      "height": 900
+    },
+    "scroll": {
+      "src": "/previews/kiln-store-scroll.webp",
+      "width": 1080,
+      "height": 2025
+    },
+    "mobile": {
+      "src": "/previews/kiln-store-mobile.webp",
+      "width": 780,
+      "height": 1688
+    }
+  },
+  "kiln-coffee": {
+    "url": "https://coffeklen.netlify.app/",
+    "capturedAt": "2026-10-04",
+    "desktop": {
+      "src": "/previews/kiln-coffee-desktop.webp",
+      "width": 1440,
+      "height": 900
+    },
+    "scroll": {
+      "src": "/previews/kiln-coffee-scroll.webp",
+      "width": 1080,
+      "height": 2025
+    },
+    "mobile": {
+      "src": "/previews/kiln-coffee-mobile.webp",
+      "width": 780,
+      "height": 1688
+    }
+  },
+  "nexusbpo": {
+    "url": "https://nexusbpo.net/",
+    "capturedAt": "2026-10-04",
+    "desktop": {
+      "src": "/previews/nexusbpo-desktop.webp",
+      "width": 1440,
+      "height": 900
+    },
+    "scroll": {
+      "src": "/previews/nexusbpo-scroll.webp",
+      "width": 1080,
+      "height": 2025
+    },
+    "mobile": {
+      "src": "/previews/nexusbpo-mobile.webp",
+      "width": 780,
+      "height": 1688
+    }
+  }
+}

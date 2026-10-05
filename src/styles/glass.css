@@ -1,0 +1,88 @@
+/* ==========================================================================
+   LIQUID GLASS — used selectively: nav, active/hovered panels, overlays.
+   Never on plain content blocks.
+
+   Layers: 1 surface (bg + blur) · 2 border · 3 inner highlight (::before)
+           · 4 pointer-following reflection (::after, driven by --mx/--my)
+   ========================================================================== */
+
+.glass {
+  --mx: 50%;
+  --my: 0%;
+  position: relative;
+  isolation: isolate;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
+  transition:
+    background-color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass {
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+}
+
+/* Fallback: no backdrop-filter → opaque surface so text stays readable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--color-bg-raised);
+  }
+}
+
+/* Inner top highlight — the "edge of a glass sheet". */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--glass-highlight), transparent 40%);
+  pointer-events: none;
+}
+
+/* Reflection that follows the pointer (set by motion/glass-light.ts). */
+.glass--reactive::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(28rem circle at var(--mx) var(--my), var(--color-accent-soft), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-standard);
+  pointer-events: none;
+}
+
+.glass--reactive:hover::after,
+.glass--reactive:focus-within::after {
+  opacity: 1;
+}
+
+.glass--interactive:hover,
+.glass--interactive:focus-within {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.glass--interactive:active {
+  border-color: var(--color-accent);
+}
+
+.glass[aria-disabled='true'],
+.glass:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.glass--pill {
+  border-radius: var(--radius-pill);
+}
+
+.glass--panel {
+  border-radius: var(--radius-md);
+}

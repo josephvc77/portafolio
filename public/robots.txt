@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joseph-valencia-frontend.netlify.app/sitemap.xml

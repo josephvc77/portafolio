@@ -1,0 +1,1215 @@
+/* ==========================================================================
+   SECTIONS — baseline layouts. Later phases layer 3D/interaction on top;
+   these must stay complete and readable on their own (no-JS, no-WebGL).
+   ========================================================================== */
+
+/* ---- Hero -------------------------------------------------------------- */
+.hero {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  align-items: end;
+  min-height: 100svh;
+  padding-top: calc(var(--header-height) + var(--space-8));
+  padding-bottom: var(--space-7);
+  overflow: hidden;
+}
+
+.hero__stage {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* CSS fallback visual — the "drawing" before (or instead of) WebGL.
+   Concentric construction rings + a measured axis, top-right, masked. */
+.hero__fallback {
+  position: absolute;
+  top: 8%;
+  right: -18%;
+  width: min(80vw, 64rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 29.6%, var(--color-line-strong) 29.8%, transparent 30.1%),
+    radial-gradient(circle, transparent 44.7%, var(--color-line) 44.9%, transparent 45.2%),
+    radial-gradient(circle, transparent 59.7%, var(--color-line) 59.9%, transparent 60.2%),
+    radial-gradient(circle at 50% 50%, var(--color-accent-soft), transparent 55%);
+  mask-image: radial-gradient(circle, #000 40%, transparent 72%);
+}
+
+.hero__fallback::before,
+.hero__fallback::after {
+  content: '';
+  position: absolute;
+  background: var(--color-line-strong);
+}
+
+.hero__fallback::before {
+  inset: 50% 0 auto;
+  height: 1px;
+}
+
+.hero__fallback::after {
+  inset: 0 auto 0 50%;
+  width: 1px;
+}
+
+/* WebGL canvas fades in over the drawing, then the drawing steps back. */
+.stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--dur-cinematic) var(--ease-standard);
+}
+
+.hero__fallback {
+  transition: opacity var(--dur-cinematic) var(--ease-standard);
+}
+
+/* Any 3D stage: canvas fades in once its scene is live. */
+.is-live > .stage-canvas {
+  opacity: 1;
+}
+
+.hero__stage.is-live .hero__fallback {
+  opacity: 0;
+}
+
+/* Scrim between scene and copy: text contrast never depends on where nodes land.
+   Wide: fades from the copy column. Narrow: the system sits above the copy. */
+.hero__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--color-bg) 18%, transparent 58%);
+  opacity: 0.85;
+}
+
+/* Portrait: reserve a band above the copy for the system (matches HeroScene framing). */
+@media (max-aspect-ratio: 23/20) {
+  .hero {
+    padding-top: calc(var(--header-height) + 28svh);
+  }
+  .hero__stage::after {
+    inset: 30% 0 0;
+    background: linear-gradient(transparent, var(--color-bg) 22%);
+    opacity: 1;
+  }
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.hero__title {
+  display: grid;
+  gap: var(--space-3);
+  font-weight: inherit;
+  letter-spacing: normal;
+}
+
+.hero__name {
+  color: var(--color-text-muted);
+}
+
+/* Mask wrapper for the "rise" intro. Padding keeps descenders unclipped. */
+.hero__role {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hero__role-line {
+  display: block;
+}
+
+.hero__roles {
+  font-size: var(--text-lg);
+  color: var(--color-accent);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.hero__meta {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: var(--hairline);
+  font-size: var(--text-sm);
+}
+
+.hero__meta dt {
+  margin-bottom: var(--space-1);
+}
+
+@media (min-width: 48em) {
+  .hero__meta {
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 30em) {
+  .hero__ctas .btn {
+    flex: 1 1 0;
+  }
+  .hero__ctas .btn--primary {
+    flex-basis: 100%;
+  }
+  .hero__fallback {
+    top: 4%;
+    right: -45%;
+    width: 120vw;
+    opacity: 0.6;
+  }
+}
+
+/* Intro choreography — CSS so the LCP text paints without waiting for JS. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] {
+    animation: intro-fade var(--dur-cinematic) var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 100ms);
+  }
+  [data-intro='rise'] {
+    animation-name: intro-rise;
+  }
+}
+
+@keyframes intro-fade {
+  from { opacity: 0; transform: translateY(0.75rem); }
+}
+
+@keyframes intro-rise {
+  from { transform: translateY(105%); }
+}
+
+/* ---- About ------------------------------------------------------------- */
+.about__grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.about__copy {
+  display: grid;
+  gap: var(--space-5);
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.about__copy > p:first-child {
+  color: var(--color-text);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: start;
+  border-top: var(--hairline);
+}
+
+.stats__item {
+  display: flex;
+  flex-direction: column-reverse; /* dt-first in source, value-first visually */
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4) var(--space-5) 0;
+  border-bottom: var(--hairline);
+  font-size: var(--text-sm);
+}
+
+.stats__item:nth-child(odd) {
+  border-right: var(--hairline);
+}
+
+.stats__item:nth-child(even) {
+  padding-left: var(--space-5);
+}
+
+.stats__value {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+.education {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-9);
+}
+
+.education__list {
+  display: grid;
+  border-top: var(--hairline);
+}
+
+.education__item {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: var(--hairline);
+  font-size: var(--text-sm);
+}
+
+.education__degree {
+  font-size: var(--text-base);
+}
+
+@media (min-width: 64em) {
+  .about__grid {
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-9);
+  }
+  .education__item {
+    grid-template-columns: 10rem 1fr auto;
+    align-items: baseline;
+    gap: var(--space-5);
+  }
+}
+
+/* ---- Stack ecosystem -------------------------------------------------- */
+.stack__layout {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.stack__aside {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+/* Stage always reserves its space (no layout shift when WebGL mounts). The CSS
+   orbit drawing below is the no-WebGL / pre-load state. */
+.stack__stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: radial-gradient(ellipse 60% 50% at 50% 55%, var(--color-accent-soft), transparent 70%);
+}
+
+.stack__stage::before,
+.stack__stage::after {
+  content: '';
+  position: absolute;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50%;
+  transition: opacity var(--dur-slow) var(--ease-standard);
+}
+
+.stack__stage::before {
+  inset: 32% 8%;
+}
+
+.stack__stage::after {
+  inset: 40% 22%;
+  border-color: var(--color-line);
+}
+
+.stack__stage.is-live::before,
+.stack__stage.is-live::after {
+  opacity: 0;
+}
+
+.stack__labels {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stack-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  will-change: transform;
+}
+
+.stack-label--group {
+  background: none;
+  color: var(--color-text-subtle);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  transition: opacity var(--dur-base) var(--ease-standard);
+}
+
+.stack-label.is-active {
+  color: var(--color-text);
+  background: var(--color-accent-soft);
+}
+
+.stack__detail {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  min-height: 12rem;
+  padding: var(--space-5);
+}
+
+.stack__detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+}
+
+.stack__detail-head .t-label {
+  flex-basis: 100%;
+}
+
+.stack__detail-title {
+  font-size: var(--text-xl);
+}
+
+.stack__detail-clear {
+  margin-left: auto;
+  font-size: var(--text-lg);
+}
+
+.stack__detail-block {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.stack__detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.stack__detail.is-filled {
+  animation: detail-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes detail-in {
+  from { opacity: 0.4; transform: translateY(0.25rem); }
+}
+
+.stack__groups {
+  display: grid;
+  gap: var(--space-6) var(--space-6);
+  align-content: start;
+}
+
+.stack__group {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding-top: var(--space-4);
+  border-top: var(--hairline);
+}
+
+/* Chips as toggle buttons */
+.chip {
+  background: transparent;
+  cursor: pointer;
+  transition:
+    opacity var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard),
+    background-color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+}
+
+.chip:hover {
+  border-color: var(--color-line-strong);
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--color-accent);
+}
+
+.has-active .chip {
+  opacity: 0.42;
+}
+
+.has-active .chip.is-related,
+.has-active .chip.is-active,
+.has-active .chip:focus-visible {
+  opacity: 1;
+}
+
+.chip.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.tag--button {
+  border: 0;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-standard), background-color var(--dur-fast) var(--ease-standard);
+}
+
+.tag--button:hover {
+  color: var(--color-text);
+  background: var(--color-accent-soft);
+}
+
+@media (min-width: 48em) {
+  .stack__groups { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 64em) {
+  .stack__layout {
+    grid-template-columns: 7fr 5fr;
+    align-items: start;
+    gap: var(--space-8);
+  }
+  .stack__aside {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+  }
+  /* Detail floats over the constellation: glass earns its place over live 3D. */
+  .stack__stage {
+    aspect-ratio: 5 / 4;
+  }
+  .stack__detail {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: min(24rem, 70%);
+    max-height: 70%;
+    overflow-y: auto;
+  }
+  .stack__groups { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 90em) {
+  .stack__groups { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- Experience journey ----------------------------------------------- */
+.journey {
+  display: grid;
+  gap: var(--space-7);
+}
+
+/* 3D runway (desktop only). CSS 3D keeps real, crisp text and costs no WebGL context. */
+.journey__track {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .journey {
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+    gap: var(--space-8);
+  }
+
+  .journey__track {
+    --tilt: 64deg;
+    display: block;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+    height: min(72vh, 40rem);
+    overflow: hidden;
+    perspective: 1100px;
+    perspective-origin: 50% 0%;
+    mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 80%, transparent);
+  }
+}
+
+.journey__plane {
+  --gap: 15rem;
+  --p: 0;
+  position: absolute;
+  top: 66%;
+  left: 34%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt)) translate3d(0, calc(var(--p) * var(--gap)), 0);
+  transition: transform var(--dur-cinematic) var(--ease-out);
+}
+
+/* Scroll-scrubbed: every frame sets --p, so no transition lag. */
+.journey.is-scrubbed .journey__plane {
+  transition: none;
+}
+
+.journey__spine {
+  position: absolute;
+  left: -0.5px;
+  width: 1px;
+  top: calc(var(--gap) * (var(--n, 3) * -1 - 0.2));
+  height: calc(var(--gap) * (var(--n, 3) + 1.6));
+  background: linear-gradient(transparent, var(--color-line-strong) 12%, var(--color-line-strong) 88%, transparent);
+}
+
+.journey__node {
+  --fade: 1;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: translate3d(0, calc(var(--i) * var(--gap) * -1), 0);
+}
+
+/* Diamond lying on the runway — the brand mark again. */
+.journey__marker {
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 2px;
+  background: var(--color-bg);
+  opacity: var(--fade);
+  transform: rotate(45deg);
+  transition: background-color var(--dur-base) var(--ease-standard);
+}
+
+.journey__marker::after {
+  content: '';
+  position: absolute;
+  inset: -0.6rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.journey__node.is-active .journey__marker {
+  background: var(--color-accent);
+}
+
+.journey__node.is-active .journey__marker::after {
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+/* Signs stand up from the runway to face the camera (counter-rotate the tilt). */
+.journey__sign {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: 0.15rem;
+  padding: var(--space-2) var(--space-3);
+  border: var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-raised);
+  white-space: nowrap;
+  text-align: center;
+  opacity: var(--fade);
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) rotateX(calc(var(--tilt) * -1)) translateY(-1.5rem);
+  transition: border-color var(--dur-base) var(--ease-standard);
+}
+
+.journey__node.is-active .journey__sign {
+  border-color: var(--color-accent);
+}
+
+.journey__period {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+}
+
+.journey__org {
+  font-size: var(--text-lg);
+  letter-spacing: var(--tracking-heading);
+}
+
+/* Project branches unfold from the active waypoint. */
+.journey__branch {
+  --angle: calc(-28deg + var(--b) * 56deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  transform: rotate(var(--angle));
+}
+
+.journey__branch-line {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  width: 8rem;
+  height: 1px;
+  background: var(--color-accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.journey__branch-label {
+  position: absolute;
+  top: 0;
+  left: 9.25rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 0 100%;
+  transform: rotate(calc(var(--angle) * -1)) rotateX(calc(var(--tilt) * -1)) translateY(-50%);
+  transition: opacity var(--dur-base) var(--ease-standard);
+}
+
+.journey__node.is-active .journey__branch-line {
+  transform: scaleX(1);
+  transition-delay: calc(var(--b) * 120ms + 150ms);
+}
+
+.journey__node.is-active .journey__branch-label {
+  opacity: 1;
+  transition-delay: calc(var(--b) * 120ms + 550ms);
+}
+
+/* ---- Experience cards --------------------------------------------------- */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-9);
+}
+
+/* The list's own spine (visible on every size; the 3D runway is desktop-only). */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0;
+  left: 0.3rem;
+  width: 1px;
+  background: linear-gradient(var(--color-line-strong), transparent);
+}
+
+.timeline__item {
+  position: relative;
+  padding-left: var(--space-7);
+}
+
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  top: 0.45rem;
+  left: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 2px;
+  background: var(--color-bg);
+  transform: rotate(45deg);
+  transition: background-color var(--dur-base) var(--ease-standard);
+}
+
+.timeline__item.is-active::before {
+  background: var(--color-accent);
+}
+
+.timeline__card {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.timeline__head {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
+
+.timeline__period {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+.timeline__body {
+  display: grid;
+  gap: var(--space-5);
+  max-width: var(--measure);
+}
+
+.timeline__projects {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.timeline__project-links {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.timeline__project-links .icon {
+  transform: rotate(-90deg);
+}
+
+/* Technologies "arrive" when a role becomes current: transient motion only —
+   tags are always full-contrast at rest. */
+@media (prefers-reduced-motion: no-preference) {
+  .journey-ready .timeline__item.is-active .timeline__tags .tag {
+    animation: tag-arrive var(--dur-slow) var(--ease-out) both;
+    animation-delay: calc(var(--t, 0) * 45ms);
+  }
+}
+
+@keyframes tag-arrive {
+  from { opacity: 0; transform: translateY(0.5rem); }
+}
+
+/* ---- Projects ---------------------------------------------------------- */
+.projects__group + .projects__group {
+  margin-top: var(--space-9);
+}
+
+.projects__group-title {
+  margin-bottom: var(--space-5);
+}
+
+.projects__list {
+  display: grid;
+  border-top: var(--hairline);
+}
+
+.project {
+  display: grid;
+  gap: var(--space-5);
+  padding-block: var(--space-7);
+  border-bottom: var(--hairline);
+}
+
+.project__head {
+  display: flex;
+  gap: var(--space-5);
+  align-items: baseline;
+}
+
+.project__index {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+.project__name {
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-display);
+}
+
+.project__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-7);
+  font-size: var(--text-sm);
+}
+
+.project__facts dt {
+  margin-bottom: var(--space-1);
+}
+
+.project__summary {
+  max-width: var(--measure);
+  color: var(--color-text-muted);
+}
+
+.project__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-7);
+}
+
+.project__metrics > div {
+  display: flex;
+  flex-direction: column-reverse;
+  font-size: var(--text-sm);
+}
+
+.project__metric-value {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.project__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.project__link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+/* ---- Live-site preview: browser frame + phone ------------------------- */
+.preview {
+  position: relative;
+  display: block;
+  padding: 0 7% 9% 0; /* room for the phone overlapping the frame */
+  border-radius: var(--radius-md);
+}
+
+.preview:focus-visible {
+  outline-offset: 6px;
+}
+
+.preview__browser {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--dur-slow) var(--ease-out), border-color var(--dur-base) var(--ease-standard);
+}
+
+.preview__bar {
+  display: grid;
+  grid-template-columns: 4rem 1fr 4rem;
+  align-items: center;
+  height: 2rem;
+  padding-inline: var(--space-3);
+  border-bottom: var(--hairline);
+}
+
+/* Window controls drawn with gradients — no extra DOM. */
+.preview__dots {
+  height: 0.5rem;
+  background:
+    radial-gradient(circle at 0.25rem 50%, var(--color-line-strong) 0.24rem, transparent 0.26rem),
+    radial-gradient(circle at 1rem 50%, var(--color-line-strong) 0.24rem, transparent 0.26rem),
+    radial-gradient(circle at 1.75rem 50%, var(--color-line-strong) 0.24rem, transparent 0.26rem);
+}
+
+.preview__url {
+  justify-self: center;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0.1rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-text-subtle);
+  font-size: var(--text-2xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview__screen {
+  position: relative;
+  display: block;
+  aspect-ratio: 1440 / 900;
+  overflow: hidden;
+  background: var(--color-bg-raised);
+}
+
+.preview__shot,
+.preview__strip {
+  width: 100%;
+  height: auto;
+}
+
+/* Taller capture laid over the first screen; glides up on hover (transform only). */
+.preview__strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(0);
+  transition: transform var(--dur-cinematic) var(--ease-out), opacity var(--dur-fast) var(--ease-standard);
+}
+
+.preview.is-scrolling .preview__strip {
+  opacity: 1;
+  transform: translateY(var(--scroll-end, 0%));
+  transition: transform 7s cubic-bezier(0.45, 0, 0.55, 1), opacity var(--dur-fast) var(--ease-standard);
+}
+
+.preview__phone {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 21%;
+  overflow: hidden;
+  padding: 3.5% 1.5% 2.5%;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 1.25rem;
+  background: var(--color-bg-raised);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.preview__phone img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+
+@media (hover: hover) {
+  .preview:hover .preview__browser,
+  .preview:focus-visible .preview__browser {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+  }
+  .preview:hover .preview__phone,
+  .preview:focus-visible .preview__phone {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 30em) {
+  .preview__phone {
+    width: 26%;
+    border-radius: 0.9rem;
+  }
+  .preview__bar {
+    grid-template-columns: 3rem 1fr 3rem;
+  }
+}
+
+/* ---- Video preview (games): a 16:9 screen with a gameplay loop -------- */
+.preview--video {
+  padding: 0;
+}
+
+.preview__screen--video {
+  aspect-ratio: 16 / 9;
+  background: var(--color-bg-raised);
+}
+
+.preview__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.preview__play {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  color: var(--color-text);
+  font-size: var(--text-2xs);
+  backdrop-filter: blur(6px);
+  transition: background var(--dur-base) var(--ease-standard);
+}
+
+.preview__play svg {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+@media (hover: hover) {
+  .preview--video:hover .preview__play,
+  .preview--video:focus-visible .preview__play {
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+  }
+}
+
+/* Text-first architecture stack (Phase 7 makes it interactive). */
+.arch {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.arch__layers {
+  display: grid;
+  gap: 0;
+  max-width: 32rem;
+}
+
+.arch__layer {
+  position: relative;
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: var(--hairline);
+  font-size: var(--text-sm);
+}
+
+.arch__layer + .arch__layer {
+  margin-top: var(--space-4);
+}
+
+/* Connector between layers. */
+.arch__layer + .arch__layer::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 1.6rem;
+  width: 1px;
+  height: var(--space-4);
+  background: var(--color-accent);
+}
+
+.arch__index {
+  color: var(--color-text-subtle);
+}
+
+@media (min-width: 64em) {
+  .project {
+    grid-template-columns: 5fr 7fr;
+    column-gap: var(--space-9);
+    align-items: start;
+  }
+  .project__head {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .project > :not(.project__head) {
+    grid-column: 2;
+  }
+
+  /* With a live preview: story on the left, the site itself on the right.
+     (.project.project--preview outranks `.project > :not(.project__head)`.) */
+  .project.project--preview {
+    grid-template-columns: 5fr 7fr;
+    row-gap: var(--space-5);
+  }
+  .project.project--preview > * {
+    grid-column: 1;
+  }
+  .project.project--preview > .project__head {
+    grid-row: auto;
+  }
+  .project.project--preview > .preview {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+    align-self: start;
+  }
+}
+
+/* ---- Principles -------------------------------------------------------- */
+.principles__list {
+  display: grid;
+  border-top: var(--hairline);
+}
+
+.principles__item {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-5);
+  border-bottom: var(--hairline);
+}
+
+.principles__index {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+}
+
+.principles__title {
+  font-size: var(--text-lg);
+}
+
+@media (min-width: 48em) {
+  .principles__list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-7);
+  }
+}
+
+@media (min-width: 64em) {
+  .principles__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Contact ----------------------------------------------------------- */
+.contact__grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.contact__info {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+
+.contact__email {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.contact__email-link {
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-heading);
+  overflow-wrap: anywhere;
+  background: linear-gradient(var(--color-accent), var(--color-accent)) no-repeat 0 100% / 100% 1px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+.contact__email-link:hover {
+  color: var(--color-accent);
+}
+
+.contact__facts {
+  display: grid;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.contact__facts dt {
+  margin-bottom: var(--space-1);
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 64em) {
+  .contact__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-9);
+  }
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+.site-footer {
+  position: relative;
+  z-index: var(--z-content);
+  padding-block: var(--space-6);
+  border-top: var(--hairline);
+  font-size: var(--text-xs);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
