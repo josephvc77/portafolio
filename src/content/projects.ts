@@ -192,6 +192,7 @@ export const PROJECTS: readonly Project[] = [
       poster: '/media/echobound-poster.webp',
       trailer: { es: '/media/echobound-trailer-es.mp4', en: '/media/echobound-trailer-en.mp4' },
     },
+    links: [{ label: { es: 'Jugar en itch.io', en: 'Play on itch.io' }, href: 'https://brujula-labs.itch.io/echobound-echoes-of-the-shattered-isles', external: true }],
   },
   {
     id: 'ikigai',
